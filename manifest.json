@@ -4,12 +4,12 @@
     "description": "Logs calls to iStats",
     "permissions": ["webRequest", "webRequestBlocking", "*://*.bbc.co.uk/*", "activeTab"],
     "background": {
-        "scripts": ["background.js"]
+        "scripts": ["js/background.js"]
     },
     "manifest_version": 2,
     "browser_action": {
         "default_title": "",
-        "default_icon": "logo.png",
+        "default_icon": "img/logo.png",
         "default_popup": "popup.html"
     }
 }
