@@ -3,3 +3,8 @@ body {
   background: #eee;
   font-family: Arial;
 }
+
+/* line 6, ../scss/style.scss */
+.section {
+  border: 1px solid #999;
+}

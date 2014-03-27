@@ -2,7 +2,8 @@
     "name": "iStats log",
     "version": "0.1",
     "description": "Logs calls to iStats",
-    "permissions": ["webRequest", "webRequestBlocking", "*://*.bbc.co.uk/*", "activeTab"],
+    "options_page": "options.html",
+    "permissions": ["webRequest", "webRequestBlocking", "*://*.bbc.co.uk/*", "activeTab", "storage"],
     "background": {
         "scripts": ["js/background.js"]
     },

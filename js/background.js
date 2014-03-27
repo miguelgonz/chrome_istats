@@ -26,19 +26,16 @@ function addDataListener (callback) {
 chrome.webRequest.onBeforeSendHeaders.addListener(
   function(info) {
       var urlParts = info.url.split("?");
+
+
       if (urlParts.length > 1) {
           var params = parseQueryString(urlParts[1]);
           for (var key in params) {
-              console.log(key);
-              if ( key === 'prev_page_type' ||
-                   key === 'page_type'
-              ) {
-                  data.push({'key':key, 'value':params[key]});
-              }
+              data.push({'key':key, 'value':params[key]});
           }
-          console.log(data);
           dataListener();
       }
+
   },
   { //filter
     urls: [ "http://sa.bbc.co.uk/*" ]
