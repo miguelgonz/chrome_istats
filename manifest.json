@@ -1,0 +1,15 @@
+{
+    "name": "iStats log",
+    "version": "0.1",
+    "description": "Logs calls to iStats",
+    "permissions": ["webRequest", "webRequestBlocking", "*://*.bbc.co.uk/*", "activeTab"],
+    "background": {
+        "scripts": ["background.js"]
+    },
+    "manifest_version": 2,
+    "browser_action": {
+        "default_title": "",
+        "default_icon": "logo.png",
+        "default_popup": "popup.html"
+    }
+}
