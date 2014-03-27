@@ -7,6 +7,10 @@ function clear () {
     data = [];
 }
 
+function updateBadge() {
+    chrome.browserAction.setBadgeText ( { text: data.length.toString() } );
+}
+
 var parseQueryString = function( queryString ) {
     var params = {}, queries, temp, i, l;
     // Split into key/value pairs
@@ -24,22 +28,32 @@ function addDataListener (callback) {
 }
 
 chrome.webRequest.onBeforeSendHeaders.addListener(
-  function(info) {
-      var urlParts = info.url.split("?");
+    function(info) {
 
+        chrome.storage.sync.get({ whitelist: '' }, function(config) {
+            var whitelist = false;
+            if (config.whitelist !== '') {
+                whitelist = config.whitelist.split(',');
+            }
 
-      if (urlParts.length > 1) {
-          var params = parseQueryString(urlParts[1]);
-          for (var key in params) {
-              data.push({'key':key, 'value':params[key]});
-          }
-          dataListener();
-      }
+            var urlParts = info.url.split("?");
 
-  },
-  { //filter
-    urls: [ "http://sa.bbc.co.uk/*" ]
-  },
-  // extraInfoSpec
-  ["blocking"]
+            if (urlParts.length > 1) {
+                var params = parseQueryString(urlParts[1]);
+                for (var key in params) {
+                    if (!whitelist || whitelist.indexOf(key) !== -1) {
+                        data.unshift({'key':key, 'value':params[key]});
+                    }
+                }
+                dataListener();
+                updateBadge();
+            }
+
+        });
+    },
+    { //filter
+        urls: [ "http://sa.bbc.co.uk/*" ]
+    },
+    // extraInfoSpec
+    ["blocking"]
 );

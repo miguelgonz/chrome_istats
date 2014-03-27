@@ -1,33 +1,28 @@
+(function () {
+    var refreshRequests = function () {
+        $('#content tbody').html('');
 
-var refreshRequests = function () {
-
-    //TODO sync once in a while
-    chrome.storage.sync.get({ whitelist: '' }, function(config) {
-        var whitelist = false;
-        if (config.whitelist !== '') {
-            whitelist = config.whitelist.split(',');
+        if (bg.data.length === 0) {
+            $('#content tbody').html('<tr><td colspan="2">No requests</td></tr>');
         }
-
         for (var request in bg.data) {
             var label = bg.data[request];
-            if (!whitelist || whitelist.indexOf(label.key) !== -1) {
-                $('#content tbody').append(
-                    '<tr><td>'+label.key+'</td><td>'+label.value+'</td></tr>'
+            $('#content tbody').append(
+                '<tr><td>'+label.key+'</td><td>'+label.value+'</td></tr>'
                 );
-            }
         }
-    });
-};
+    };
 
 
-var bg;
+    var bg;
 
-jQuery(function () {
-    bg = chrome.extension.getBackgroundPage();
-    bg.addDataListener(refreshRequests);
-    refreshRequests();
-    $('#clear').click(function () {
-        bg.clear();
+    jQuery(function () {
+        bg = chrome.extension.getBackgroundPage();
+        bg.addDataListener(refreshRequests);
         refreshRequests();
+        $('#clear').click(function () {
+            bg.clear();
+            refreshRequests();
+        });
     });
-});
+})();
