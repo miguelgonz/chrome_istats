@@ -11,10 +11,16 @@ body {
 
 table {
     th {
-        background: #ddd;
+        background: #444;
+        color: #ccc;
     }
     td, th {
         border: 1px solid #999;
+        padding: 4px;
+    }
+    tr.request-header td {
+        background: #444;
+        color: #ccc;
     }
 }
 

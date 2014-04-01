@@ -13,14 +13,21 @@ body {
 
 /* line 13, ../scss/style.scss */
 table th {
-  background: #ddd;
+  background: #444;
+  color: #ccc;
 }
-/* line 16, ../scss/style.scss */
+/* line 17, ../scss/style.scss */
 table td, table th {
   border: 1px solid #999;
+  padding: 4px;
+}
+/* line 21, ../scss/style.scss */
+table tr.request-header td {
+  background: #444;
+  color: #ccc;
 }
 
-/* line 21, ../scss/style.scss */
+/* line 27, ../scss/style.scss */
 button {
   background: #4162a8;
   border-top: 1px solid #38538c;

@@ -5,10 +5,17 @@ var data = [];
 
 function clear () {
     data = [];
+    updateBadge();
 }
 
 function updateBadge() {
-    chrome.browserAction.setBadgeText ( { text: data.length.toString() } );
+    var numberRequests = 0;
+    for (var i=0; i < data.length ; i++) {
+        if (data[i].separator) {
+            numberRequests ++;
+        }
+    }
+    chrome.browserAction.setBadgeText ( { text: numberRequests.toString() } );
 }
 
 var parseQueryString = function( queryString ) {
@@ -42,9 +49,10 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
                 var params = parseQueryString(urlParts[1]);
                 for (var key in params) {
                     if (!whitelist || whitelist.indexOf(key) !== -1) {
-                        data.unshift({'key':key, 'value':params[key]});
+                        data.unshift({'separator': false, 'key':key, 'value':params[key]});
                     }
                 }
+                data.unshift({'separator':true, 'timestamp': new Date().getTime()});
                 dataListener();
                 updateBadge();
             }
