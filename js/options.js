@@ -1,7 +1,7 @@
 // Saves options to chrome.storage
 function save_options() {
-    var whitelist = document.getElementById('whitelist').value;
-    chrome.storage.sync.set({
+    var whitelist = document.getElementById('whitelist').value.replace(/ /g, '');
+    chrome.storage.local.set({
         whitelist: whitelist
     }, function() {
         // Update status to let user know options were saved.
@@ -16,7 +16,7 @@ function save_options() {
 // Restores select box and checkbox state using the preferences
 // stored in chrome.storage.
 function restore_options() {
-    chrome.storage.sync.get({
+    chrome.storage.local.get({
         whitelist: ''
     }, function(items) {
         document.getElementById('whitelist').value = items.whitelist;

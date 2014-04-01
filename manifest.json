@@ -12,5 +12,6 @@
         "default_title": "",
         "default_icon": "img/logo.png",
         "default_popup": "popup.html"
-    }
+    },
+    "icons": { "48": "img/logo.png" }
 }

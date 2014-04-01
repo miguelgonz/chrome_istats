@@ -37,7 +37,7 @@ function addDataListener (callback) {
 chrome.webRequest.onBeforeSendHeaders.addListener(
     function(info) {
 
-        chrome.storage.sync.get({ whitelist: '' }, function(config) {
+        chrome.storage.local.get({ whitelist: '' }, function(config) {
             var whitelist = false;
             if (config.whitelist !== '') {
                 whitelist = config.whitelist.split(',');
