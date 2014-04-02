@@ -1,14 +1,27 @@
+//option key, DOM VALUE
+var optionMapping = {
+    'whitelist': 'whitelist',
+    'filter_key': 'filter_key',
+    'filter_value': 'filter_value'
+};
+
+var removeSpaces = function(text) {
+    return text.replace(/ /g, '');
+};
+
 // Saves options to chrome.storage
 function save_options() {
-    var whitelist = document.getElementById('whitelist').value.replace(/ /g, '');
-    chrome.storage.local.set({
-        whitelist: whitelist
-    }, function() {
+    var setOptions = {};
+    for (var key in optionMapping) {
+        setOptions[key] = $('#'+optionMapping[key]).val();
+    }
+
+    chrome.storage.local.set(setOptions, function() {
         // Update status to let user know options were saved.
-        var status = document.getElementById('status');
-        status.textContent = 'Options saved.';
+        var status = $('#status').hide();
+        status.text('Options saved.').fadeIn();
         setTimeout(function() {
-            status.textContent = '';
+            status.fadeOut();
         }, 750);
     });
 }
@@ -16,11 +29,19 @@ function save_options() {
 // Restores select box and checkbox state using the preferences
 // stored in chrome.storage.
 function restore_options() {
-    chrome.storage.local.get({
-        whitelist: ''
-    }, function(items) {
-        document.getElementById('whitelist').value = items.whitelist;
+
+    var defaultOptions = {};
+    for (var key in optionMapping) {
+        defaultOptions[key] = '';
+    }
+
+    chrome.storage.local.get(defaultOptions, function(items) {
+        for (var key in optionMapping) {
+            $('#'+optionMapping[key]).val(items[key]);
+        }
     });
 }
-document.addEventListener('DOMContentLoaded', restore_options);
-document.getElementById('save').addEventListener('click', save_options);
+$(function () {
+    restore_options();
+    $('#save').click(save_options);
+});

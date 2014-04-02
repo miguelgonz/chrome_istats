@@ -2,16 +2,23 @@
 <html>
     <head><title>iStats Extension Options</title>
         <link rel="stylesheet" href="/css/style.css" type="text/css" media="screen" charset="utf-8">
+        <script src="js/jquery.min.js"></script>
     </head>
     <body>
-        <div class="section">
-            <h2>Whitelist labels </h2>
+        <fieldset>
+            <legend>Whitelist labels</legend>
             <p>Keep empty to allow all</p>
             <label>Labels:</label> (Comma separated)<br/>
             <input type="text" size="80" id="whitelist" placeholder="prev_page_type,page_type"/>
-            <div id="status"></div>
-            <button id="save">Save</button>
-        </div>
+        </fieldset>
+        <fieldset>
+            <legend>Filter requests</legend>
+            <p>Don't show requests that don't have the following key with a value:</p>
+            <input type="text" size="40" id="filter_key" placeholder="action_name"/>
+            <input type="text" size="40" id="filter_value" placeholder="page_load"/>
+        </fieldset>
+        <button id="save">Save</button>
+        <div id="status"></div>
         <script src="js/options.js"></script>
     </body>
 </html>

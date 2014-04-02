@@ -1,3 +1,7 @@
+@import "compass/css3/images";
+@import "compass/css3/box-shadow";
+@import "compass/css3/transition";
+
 body {
     background: #eee;
     font-family: Arial;
@@ -25,21 +29,42 @@ table {
 }
 
 button {
-    background: #4162a8;
-    border-top: 1px solid #38538c;
-    border-right: 1px solid #1f2d4d;
-    border-bottom: 1px solid #151e33;
-    border-left: 1px solid #1f2d4d;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 10px 1px #5c8bee, 0 1px 0 #1d2c4d, 0 6px 0 #1f3053, 0 8px 4px 1px #111111;
-    box-shadow: inset 0 1px 10px 1px #5c8bee, 0 1px 0 #1d2c4d, 0 6px 0 #1f3053, 0 8px 4px 1px #111111;
-    color: #fff;
-    font: bold 12px/1 "helvetica neue", helvetica, arial, sans-serif;
-    margin-bottom: 10px;
-    padding: 5px 0 6px 0;
-    text-align: center;
-    text-shadow: 0 -1px 1px #1e2d4d;
-    width: 70px;
-    -webkit-background-clip: padding-box;
+  $color: #eee;
+  
+  @mixin font-color {
+    @if lightness($color) > 50 {
+      color: rgba(black,0.8);
+      text-shadow: 0 0.1em 0 rgba(white,0.5);
+  	} @else {
+  		color: rgba(white,0.85);
+      text-shadow: 0 -0.08em 0 darken($color, 20%);
+		}
+  }
+  
+  font: bold 20px Arial,sans-serif;
+  @include font-color;
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  padding: 0.4em 2em 0.5em;
+  border-radius: 0.30em;
+  border: 1px solid;
+  border-color: darken($color, 20%) darken($color, 30%) darken($color, 40%);
+  background-color: $color;
+  @include background-image(linear-gradient($color, darken($color, 10%)));
+  @include box-shadow(0 0.1em 0.5em rgba(black,0.10), 0 0.1em 0.2em rgba(black,0.3), 0 -0.1em 0.07em rgba(black,0.3) inset, 0 0.1em 0.07em rgba(white,0.2) inset);
+  @include transition(all 100ms);
+  
+  &:hover {
+    @include box-shadow(0 0.1em 0.5em rgba(black,0.4), 0 0.1em 0.2em rgba(black,0.4), 0 -0.1em 0.07em rgba(black,0.3) inset, 0 0.1em 0.07em rgba(white,0.2) inset);
+  }
+  
+  &:active {
+    padding: 0.4em 2em 0.4em;
+    margin-top: 0.1em;
+    border-color: darken($color, 30%) darken($color, 20%) $color;
+    @include background-image(linear-gradient(darken($color, 5%), $color));
+    @include box-shadow(0 0.1em 0.2em rgba(black,0.1) inset, 0 0.1em 0.1em rgba(black,0.2) inset, 0.05em 0 0.07em rgba(black,0.2) inset, -0.05em 0 0.07em rgba(black,0.2) inset);
+    @include transition(all 10ms);
+  }
 }
-
