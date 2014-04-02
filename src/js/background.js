@@ -34,20 +34,41 @@ function addDataListener (callback) {
     dataListener = callback;
 }
 
+function filterRequest(params, config) {
+    var key;
+    //decide if we have to filter the request or not
+    if (config.filter_key !== '') {
+        for (key in params) {
+            if (key === config.filter_key && params[key] === config.filter_value) {
+                return true;
+            }
+        }
+        return false;
+    }
+    return true;
+}
+
 chrome.webRequest.onBeforeSendHeaders.addListener(
     function(info) {
 
-        chrome.storage.local.get({ whitelist: '' }, function(config) {
-            var whitelist = false;
+        chrome.storage.local.get({ whitelist: '', filter_key: '', filter_value: '' }, function(config) {
+            var whitelist = false,
+                count = 0,
+                urlParts = info.url.split("?"),
+                params = false;
+
             if (config.whitelist !== '') {
                 whitelist = config.whitelist.split(',');
             }
 
-            var urlParts = info.url.split("?");
 
             if (urlParts.length > 1) {
-                var params = parseQueryString(urlParts[1]);
-                var count = 0;
+                params = parseQueryString(urlParts[1]);
+
+                if (filterRequest(params, config) === false) {
+                    return;
+                }
+
                 for (var key in params) {
                     if (!whitelist || whitelist.indexOf(key) !== -1) {
                         data.unshift({'separator': false, 'key':key, 'value':params[key]});
