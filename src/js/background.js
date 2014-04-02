@@ -82,7 +82,9 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
                 if (count > 0) {
                     data.unshift({'separator':true, 'timestamp': new Date().getTime()});
                 }
-                dataListener();
+                try{
+                    dataListener();
+                } catch(e) {}
             }
             updateBadge();
         }
