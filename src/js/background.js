@@ -47,12 +47,16 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
 
             if (urlParts.length > 1) {
                 var params = parseQueryString(urlParts[1]);
+                var count = 0;
                 for (var key in params) {
                     if (!whitelist || whitelist.indexOf(key) !== -1) {
                         data.unshift({'separator': false, 'key':key, 'value':params[key]});
+                        count ++;
                     }
                 }
-                data.unshift({'separator':true, 'timestamp': new Date().getTime()});
+                if (count > 0) {
+                    data.unshift({'separator':true, 'timestamp': new Date().getTime()});
+                }
                 dataListener();
                 updateBadge();
             }
