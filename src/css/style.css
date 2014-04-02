@@ -28,6 +28,29 @@ table tr.request-header td {
 }
 
 /* line 31, ../scss/style.scss */
+#fields {
+  float: left;
+  width: 60%;
+}
+
+/* line 35, ../scss/style.scss */
+#tips {
+  float: left;
+  width: 39%;
+}
+/* line 38, ../scss/style.scss */
+#tips ul {
+  list-style: none;
+}
+/* line 41, ../scss/style.scss */
+#tips li {
+  display: inline-table;
+  border-right: 1px solid;
+  margin-right: 8px;
+  padding-right: 8px;
+}
+
+/* line 49, ../scss/style.scss */
 button {
   font: bold 20px Arial,sans-serif;
   color: rgba(0, 0, 0, 0.8);
@@ -53,13 +76,13 @@ button {
   -o-transition: all 100ms;
   transition: all 100ms;
 }
-/* line 58, ../scss/style.scss */
+/* line 76, ../scss/style.scss */
 button:hover {
   -webkit-box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.4), 0 0.1em 0.2em rgba(0, 0, 0, 0.4), 0 -0.1em 0.07em rgba(0, 0, 0, 0.3) inset, 0 0.1em 0.07em rgba(255, 255, 255, 0.2) inset;
   -moz-box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.4), 0 0.1em 0.2em rgba(0, 0, 0, 0.4), 0 -0.1em 0.07em rgba(0, 0, 0, 0.3) inset, 0 0.1em 0.07em rgba(255, 255, 255, 0.2) inset;
   box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.4), 0 0.1em 0.2em rgba(0, 0, 0, 0.4), 0 -0.1em 0.07em rgba(0, 0, 0, 0.3) inset, 0 0.1em 0.07em rgba(255, 255, 255, 0.2) inset;
 }
-/* line 62, ../scss/style.scss */
+/* line 80, ../scss/style.scss */
 button:active {
   padding: 0.4em 2em 0.4em;
   margin-top: 0.1em;

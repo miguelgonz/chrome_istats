@@ -13,12 +13,18 @@
     var refreshRequests = function () {
         $('#content tbody').html('');
 
-        if (bg.data.length === 0) {
-            $('#content,#clear').hide();
-            $('.message').show().html('No requests');
-        } else {
-            $('#content,#clear').show();
-            $('#message').hide();
+        try {
+            if (bg.data.length === 0) {
+                $('#content').hide();
+                $('#clear').hide();
+                $('.message').show().html('No requests');
+            } else {
+                $('#content').show();
+                $('#clear').show();
+                $('#message').hide();
+            }
+        }catch(e) {
+            console.error(e);
         }
         for (var request in bg.data) {
             var label = bg.data[request];

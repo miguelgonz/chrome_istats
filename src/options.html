@@ -5,18 +5,65 @@
         <script src="js/jquery.min.js"></script>
     </head>
     <body>
-        <fieldset>
-            <legend>Whitelist labels</legend>
-            <p>Keep empty to allow all</p>
-            <label>Labels:</label> (Comma separated)<br/>
-            <input type="text" size="80" id="whitelist" placeholder="prev_page_type,page_type"/>
-        </fieldset>
-        <fieldset>
-            <legend>Filter requests</legend>
-            <p>Don't show requests that don't have the following key with a value. Leave empty to process all requests.</p>
-            <input type="text" size="40" id="filter_key" placeholder="action_name"/>
-            <input type="text" size="40" id="filter_value" placeholder="page-load"/>
-        </fieldset>
+        <div id="content">
+            <div id="fields">
+                <fieldset>
+                    <legend>Whitelist labels</legend>
+                    <p>Keep empty to allow all</p>
+                    <label>Labels:</label> (Comma separated)<br/>
+                    <input type="text" size="80" id="whitelist" placeholder="prev_page_type,page_type"/>
+                </fieldset>
+                <fieldset>
+                    <legend>Filter requests</legend>
+                    <p>Don't show requests that don't have the following key with a value. Leave empty to process all requests.</p>
+                    <input type="text" size="40" id="filter_key" placeholder="action_name"/>
+                    <input type="text" size="40" id="filter_value" placeholder="page-load"/>
+                </fieldset>
+            </div>
+
+            <div id="tips">
+                <p>The following is a (not complete) list of labels you might find useful</p>
+                <ul>
+                    <li>action_name</li>
+                    <li>action_type</li>
+                    <li>app_name</li>
+                    <li>app_type</li>
+                    <li>app_version</li>
+                    <li>bbc_mc</li>
+                    <li>blq_r</li>
+                    <li>blq_s</li>
+                    <li>blq_v</li>
+                    <li>breakpoint_type</li>
+                    <li>campaignID</li>
+                    <li>channel_tx_state</li>
+                    <li>event_master_brand</li>
+                    <li>iplayer_version</li>
+                    <li>language</li>
+                    <li>location_nation</li>
+                    <li>location_region</li>
+                    <li>ml_name</li>
+                    <li>ml_version</li>
+                    <li>name</li>
+                    <li>ns__t</li>
+                    <li>ns_c</li>
+                    <li>ns_jspageurl</li>
+                    <li>ns_referrer</li>
+                    <li>ns_ti</li>
+                    <li>ns_type</li>
+                    <li>object_count_stream</li>
+                    <li>page_layout</li>
+                    <li>page_type</li>
+                    <li>pal_route</li>
+                    <li>pal_webapp</li>
+                    <li>prod_name</li>
+                    <li>screen_resolution</li>
+                    <li>service_type</li>
+                    <li>testVariant</li>
+                </ul>
+            </div>
+        </div>
+        <br style="clear: both"/>
+        <br style="clear: both"/>
         <button id="save">Save</button>
         <div id="status"></div>
         <script src="js/options.js"></script>

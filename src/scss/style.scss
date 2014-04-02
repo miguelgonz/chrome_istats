@@ -28,6 +28,24 @@ table {
     }
 }
 
+#fields {
+    float: left; width: 60%;
+}
+
+#tips {
+    float: left; width: 39%;
+
+    ul {
+        list-style: none;
+    }
+    li {
+        display: inline-table;
+        border-right: 1px solid;
+        margin-right: 8px;
+        padding-right: 8px;
+    }
+}
+
 button {
   $color: #eee;
   

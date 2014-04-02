@@ -1,7 +1,18 @@
-console.log('iStats logger loaded');
-var dataListener = function () {};
+var dataListener = function () {},
+    data = [],
+    config = { whitelist: '', filter_key: '', filter_value: '' };
 
-var data = [];
+function init() {
+    chrome.storage.onChanged.addListener(loadSettings);
+    loadSettings();
+    console.log('iStats logger loaded');
+}
+
+function loadSettings() {
+    chrome.storage.local.get({ whitelist: '', filter_key: '', filter_value: '' }, function(storedConfig) {
+        config = storedConfig;
+    });
+}
 
 function clear () {
     data = [];
@@ -50,25 +61,18 @@ function filterRequest(params, config) {
 
 chrome.webRequest.onBeforeSendHeaders.addListener(
     function(info) {
+        var whitelist = false,
+            count = 0,
+            urlParts = info.url.split("?"),
+            params = false;
 
-        chrome.storage.local.get({ whitelist: '', filter_key: '', filter_value: '' }, function(config) {
-            var whitelist = false,
-                count = 0,
-                urlParts = info.url.split("?"),
-                params = false;
-
+        if (urlParts.length > 1) {
+            params = parseQueryString(urlParts[1]);
             if (config.whitelist !== '') {
                 whitelist = config.whitelist.split(',');
             }
 
-
-            if (urlParts.length > 1) {
-                params = parseQueryString(urlParts[1]);
-
-                if (filterRequest(params, config) === false) {
-                    return;
-                }
-
+            if (filterRequest(params, config) !== false) {
                 for (var key in params) {
                     if (!whitelist || whitelist.indexOf(key) !== -1) {
                         data.unshift({'separator': false, 'key':key, 'value':params[key]});
@@ -79,10 +83,9 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
                     data.unshift({'separator':true, 'timestamp': new Date().getTime()});
                 }
                 dataListener();
-                updateBadge();
             }
-
-        });
+            updateBadge();
+        }
     },
     { //filter
         urls: [ "http://sa.bbc.co.uk/*" ]
@@ -90,3 +93,6 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
     // extraInfoSpec
     ["blocking"]
 );
+
+
+init();
