@@ -21,7 +21,7 @@
             } else {
                 $('#content').show();
                 $('#clear').show();
-                $('#message').hide();
+                $('#message').hide().html('');
             }
         }catch(e) {
             console.error(e);
@@ -49,5 +49,14 @@
             bg.clear();
             refreshRequests();
         });
+        $('#onoff').click(function () {
+            if ($(this).text() === 'Enabled') {
+                $(this).text('Disabled');
+                bg.disable();
+            } else {
+                $(this).text('Enabled');
+                bg.enable();
+            }
+        }).text(bg.config.enabled ? 'Enabled':'Disabled');
     });
 })();

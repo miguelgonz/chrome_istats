@@ -1,25 +1,48 @@
 var dataListener = function () {},
     data = [],
-    config = { whitelist: '', filter_key: '', filter_value: '' };
+    config = { whitelist: '', filter_key: '', filter_value: '', enabled: 1};
 
 function init() {
-    chrome.storage.onChanged.addListener(loadSettings);
-    loadSettings();
+    chrome.storage.onChanged.addListener(_loadSettings);
+    _loadSettings();
     console.log('iStats logger loaded');
-}
-
-function loadSettings() {
-    chrome.storage.local.get({ whitelist: '', filter_key: '', filter_value: '' }, function(storedConfig) {
-        config = storedConfig;
-    });
 }
 
 function clear () {
     data = [];
-    updateBadge();
+    _updateBadge();
 }
 
-function updateBadge() {
+function enable() {
+    config.enabled = true;
+    chrome.browserAction.setIcon({ "path": "img/logo.png" });
+    _updateConfig();
+}
+
+function disable() {
+    config.enabled = false;
+    chrome.browserAction.setIcon({ "path": "img/logo_off.png" });
+    _updateConfig();
+}
+
+function addDataListener (callback) {
+    dataListener = callback;
+}
+
+/** Not public facing functions */
+
+function _loadSettings() {
+    chrome.storage.local.get({ whitelist: '', filter_key: '', filter_value: '' , enabled: 1}, function(storedConfig) {
+        config = storedConfig;
+    });
+}
+
+function _updateConfig() {
+    chrome.storage.local.set({'enabled': config.enabled});
+}
+
+
+function _updateBadge() {
     var numberRequests = 0;
     for (var i=0; i < data.length ; i++) {
         if (data[i].separator) {
@@ -29,7 +52,7 @@ function updateBadge() {
     chrome.browserAction.setBadgeText ( { text: numberRequests.toString() } );
 }
 
-var parseQueryString = function( queryString ) {
+function _parseQueryString( queryString ) {
     var params = {}, queries, temp, i, l;
     // Split into key/value pairs
     queries = queryString.split("&");
@@ -39,13 +62,9 @@ var parseQueryString = function( queryString ) {
         params[temp[0]] = temp[1];
     }
     return params;
-};
-
-function addDataListener (callback) {
-    dataListener = callback;
 }
 
-function filterRequest(params, config) {
+function _filterRequest(params, config) {
     var key;
     //decide if we have to filter the request or not
     if (config.filter_key !== '') {
@@ -65,14 +84,15 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
             count = 0,
             urlParts = info.url.split("?"),
             params = false;
+        if (!config.enabled) return;
 
         if (urlParts.length > 1) {
-            params = parseQueryString(urlParts[1]);
+            params = _parseQueryString(urlParts[1]);
             if (config.whitelist !== '') {
                 whitelist = config.whitelist.split(',');
             }
 
-            if (filterRequest(params, config) !== false) {
+            if (_filterRequest(params, config) !== false) {
                 for (var key in params) {
                     if (!whitelist || whitelist.indexOf(key) !== -1) {
                         data.unshift({'separator': false, 'key':key, 'value':params[key]});
@@ -86,7 +106,7 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
                     dataListener();
                 } catch(e) {}
             }
-            updateBadge();
+            _updateBadge();
         }
     },
     { //filter

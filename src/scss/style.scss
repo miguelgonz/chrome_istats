@@ -3,10 +3,36 @@
 @import "compass/css3/transition";
 
 body {
-    background: #eee;
+    background: #f5f5f5;
     font-family: Arial;
+    font-size: 12px;
     text-align: center;
     min-width:300px;
+    margin:0;
+
+}
+
+header {
+    background: white;
+    position: fixed;
+    top: 0px;
+    text-align: center;
+    display: block;
+    width: 100%;
+    padding: 4px 0;
+    border-bottom: 1px solid #ddd;
+
+    button {
+        display: inline;
+    }
+}
+
+.container {
+    margin-top: 40px;
+
+    table {
+        margin: 0 auto;
+    }
 }
 
 .section {
@@ -59,7 +85,7 @@ button {
 		}
   }
   
-  font: bold 20px Arial,sans-serif;
+  font: bold 10px Arial,sans-serif;
   @include font-color;
   display: inline-block;
   outline: none;
