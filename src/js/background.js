@@ -1,6 +1,7 @@
 var dataListener = function () {},
     data = [],
-    config = { whitelist: '', filter_key: '', filter_value: '', enabled: 1};
+    defaultConfig = { whitelist: '', whitelist_label: '', whitelist_value: '', blacklist_label: '', blacklist_value: '', enabled: 1},
+    config = defaultConfig;
 
 function init() {
     chrome.storage.onChanged.addListener(_loadSettings);
@@ -32,7 +33,7 @@ function addDataListener (callback) {
 /** Not public facing functions */
 
 function _loadSettings() {
-    chrome.storage.local.get({ whitelist: '', filter_key: '', filter_value: '' , enabled: 1}, function(storedConfig) {
+    chrome.storage.local.get(defaultConfig, function(storedConfig) {
         config = storedConfig;
     });
 }
@@ -64,16 +65,28 @@ function _parseQueryString( queryString ) {
     return params;
 }
 
-function _filterRequest(params, config) {
+/**
+ * Returns if the request should pass
+ */
+function _filterRequest(params) {
     var key;
     //decide if we have to filter the request or not
-    if (config.filter_key !== '') {
+    if (config.whitelist_label !== '') {
         for (key in params) {
-            if (key === config.filter_key && params[key] === config.filter_value) {
+            if (key === config.whitelist_label && params[key] === config.whitelist_value) {
                 return true;
             }
         }
         return false;
+    }
+    if (config.blacklist_label !== '') {
+        for (key in params) {
+            console.log(key, params[key]);
+            if (key === config.blacklist_label && params[key] === config.blacklist_value) {
+                return false;
+            }
+        }
+        return true;
     }
     return true;
 }
@@ -92,7 +105,7 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
                 whitelist = config.whitelist.split(',');
             }
 
-            if (_filterRequest(params, config) !== false) {
+            if (_filterRequest(params)) {
                 for (var key in params) {
                     if (!whitelist || whitelist.indexOf(key) !== -1) {
                         data.unshift({'separator': false, 'key':key, 'value':params[key]});

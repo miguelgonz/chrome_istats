@@ -1,8 +1,10 @@
 //option key, DOM VALUE
 var optionMapping = {
     'whitelist': 'whitelist',
-    'filter_key': 'filter_key',
-    'filter_value': 'filter_value'
+    'blacklist_label': 'blacklist_label',
+    'blacklist_value': 'blacklist_value',
+    'whitelist_label': 'whitelist_label',
+    'whitelist_value': 'whitelist_value'
 };
 
 var removeSpaces = function(text) {

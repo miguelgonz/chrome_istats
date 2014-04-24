@@ -15,9 +15,16 @@
                 </fieldset>
                 <fieldset>
                     <legend>Filter requests</legend>
-                    <p>Don't show requests that don't have the following key with a value. Leave empty to process all requests.</p>
-                    <input type="text" size="40" id="filter_key" placeholder="action_name"/>
-                    <input type="text" size="40" id="filter_value" placeholder="page-load"/>
+
+                    <h3>Whitelist</h3>
+                    <p>Don't show requests that <strong>don't have</strong> the following label with a value. Leave empty to process all requests.</p>
+                    <input type="text" size="40" id="whitelist_label" placeholder="action_name"/>
+                    <input type="text" size="40" id="whitelist_value" placeholder="page-load"/>
+
+                    <h3>Blacklist</h3>
+                    <p>Don't show requests that <strong>have</strong> the following label with the following value.</p>
+                    <input type="text" size="40" id="blacklist_label" placeholder="ns_type"/>
+                    <input type="text" size="40" id="blacklist_value" placeholder="hidden"/>
                 </fieldset>
             </div>
 
