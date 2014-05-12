@@ -2,6 +2,8 @@ Chrome iStats extension
 =============
 
 Chrome Extension that logs iStats calls
+You can install it from
+https://chrome.google.com/webstore/detail/istats-log/jgkkagdpkhpdpddcegfcahbakhefbbga
 
 Installing
 -----
