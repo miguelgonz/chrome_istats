@@ -3,19 +3,20 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <title>Popup</title>
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootswatch/3.1.1/lumen/bootstrap.min.css" type="text/css" media="screen" charset="utf-8">
         <script src="js/jquery.min.js"></script>
         <script src="js/popup.js"> </script>
         <link rel="stylesheet" href="/css/style.css" type="text/css" media="screen" charset="utf-8">
     </head>
     <body>
-        <header>
-            <button id="onoff">Enabled</button>
-            <button id="clear">Clear</button>
-        </header>
-        <div class="container">
+        <div id="popup" class="container">
+            <header>
+                <button id="onoff" class="btn btn-primary">Enabled</button>
+                <button id="clear" class="btn btn-danger">Clear</button>
+            </header>
             <a href="#"></a> <!-- To get the focus -->
             <span class="message error">&nbsp;</span>
-            <table id="content">
+            <table id="content" class="table table-striped">
                 <thead>
                     <tr><th>Key</th><th>Value</th></tr>
                 </thead>

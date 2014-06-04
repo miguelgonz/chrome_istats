@@ -1,129 +1,41 @@
 /* line 5, ../scss/style.scss */
-body {
-  background: #f5f5f5;
-  font-family: Arial;
-  font-size: 12px;
-  text-align: center;
-  min-width: 300px;
-  margin: 0;
-}
-
-/* line 15, ../scss/style.scss */
-header {
-  background: white;
-  position: fixed;
-  top: 0px;
-  text-align: center;
-  display: block;
-  width: 100%;
-  padding: 4px 0;
-  border-bottom: 1px solid #ddd;
-}
-/* line 25, ../scss/style.scss */
-header button {
-  display: inline;
-}
-
-/* line 30, ../scss/style.scss */
 .container {
   margin-top: 20px;
 }
-/* line 33, ../scss/style.scss */
+/* line 8, ../scss/style.scss */
 .container table {
   margin: 0 auto;
 }
 
-/* line 38, ../scss/style.scss */
+/* line 13, ../scss/style.scss */
 .section {
   border: 1px solid #999;
 }
 
-/* line 43, ../scss/style.scss */
-table th {
+/* line 18, ../scss/style.scss */
+#popup table th {
   background: #444;
   color: #ccc;
 }
-/* line 47, ../scss/style.scss */
-table td, table th {
+/* line 22, ../scss/style.scss */
+#popup table td, #popup table th {
   border: 1px solid #999;
   padding: 4px;
 }
-/* line 51, ../scss/style.scss */
-table tr.request-header td {
+/* line 26, ../scss/style.scss */
+#popup table tr.request-header td {
   background: #444;
   color: #ccc;
 }
 
-/* line 57, ../scss/style.scss */
-#fields {
-  float: left;
-  width: 60%;
-}
-
-/* line 61, ../scss/style.scss */
-#tips {
-  float: left;
-  width: 39%;
-}
-/* line 64, ../scss/style.scss */
+/* line 34, ../scss/style.scss */
 #tips ul {
   list-style: none;
 }
-/* line 67, ../scss/style.scss */
+/* line 37, ../scss/style.scss */
 #tips li {
   display: inline-table;
   border-right: 1px solid;
   margin-right: 8px;
   padding-right: 8px;
-}
-
-/* line 75, ../scss/style.scss */
-button {
-  font: bold 10px Arial,sans-serif;
-  color: rgba(0, 0, 0, 0.8);
-  text-shadow: 0 0.1em 0 rgba(255, 255, 255, 0.5);
-  display: inline-block;
-  outline: none;
-  cursor: pointer;
-  padding: 0.4em 2em 0.5em;
-  border-radius: 0.30em;
-  border: 1px solid;
-  border-color: #bbbbbb #a2a2a2 #888888;
-  background-color: #eeeeee;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #eeeeee), color-stop(100%, #d4d4d4));
-  background-image: -webkit-linear-gradient(#eeeeee, #d4d4d4);
-  background-image: -moz-linear-gradient(#eeeeee, #d4d4d4);
-  background-image: -o-linear-gradient(#eeeeee, #d4d4d4);
-  background-image: linear-gradient(#eeeeee, #d4d4d4);
-  -webkit-box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.1), 0 0.1em 0.2em rgba(0, 0, 0, 0.3), 0 -0.1em 0.07em rgba(0, 0, 0, 0.3) inset, 0 0.1em 0.07em rgba(255, 255, 255, 0.2) inset;
-  -moz-box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.1), 0 0.1em 0.2em rgba(0, 0, 0, 0.3), 0 -0.1em 0.07em rgba(0, 0, 0, 0.3) inset, 0 0.1em 0.07em rgba(255, 255, 255, 0.2) inset;
-  box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.1), 0 0.1em 0.2em rgba(0, 0, 0, 0.3), 0 -0.1em 0.07em rgba(0, 0, 0, 0.3) inset, 0 0.1em 0.07em rgba(255, 255, 255, 0.2) inset;
-  -webkit-transition: all 100ms;
-  -moz-transition: all 100ms;
-  -o-transition: all 100ms;
-  transition: all 100ms;
-}
-/* line 102, ../scss/style.scss */
-button:hover {
-  -webkit-box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.4), 0 0.1em 0.2em rgba(0, 0, 0, 0.4), 0 -0.1em 0.07em rgba(0, 0, 0, 0.3) inset, 0 0.1em 0.07em rgba(255, 255, 255, 0.2) inset;
-  -moz-box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.4), 0 0.1em 0.2em rgba(0, 0, 0, 0.4), 0 -0.1em 0.07em rgba(0, 0, 0, 0.3) inset, 0 0.1em 0.07em rgba(255, 255, 255, 0.2) inset;
-  box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.4), 0 0.1em 0.2em rgba(0, 0, 0, 0.4), 0 -0.1em 0.07em rgba(0, 0, 0, 0.3) inset, 0 0.1em 0.07em rgba(255, 255, 255, 0.2) inset;
-}
-/* line 106, ../scss/style.scss */
-button:active {
-  padding: 0.4em 2em 0.4em;
-  margin-top: 0.1em;
-  border-color: #a2a2a2 #bbbbbb #eeeeee;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e1e1e1), color-stop(100%, #eeeeee));
-  background-image: -webkit-linear-gradient(#e1e1e1, #eeeeee);
-  background-image: -moz-linear-gradient(#e1e1e1, #eeeeee);
-  background-image: -o-linear-gradient(#e1e1e1, #eeeeee);
-  background-image: linear-gradient(#e1e1e1, #eeeeee);
-  -webkit-box-shadow: 0 0.1em 0.2em rgba(0, 0, 0, 0.1) inset, 0 0.1em 0.1em rgba(0, 0, 0, 0.2) inset, 0.05em 0 0.07em rgba(0, 0, 0, 0.2) inset, -0.05em 0 0.07em rgba(0, 0, 0, 0.2) inset;
-  -moz-box-shadow: 0 0.1em 0.2em rgba(0, 0, 0, 0.1) inset, 0 0.1em 0.1em rgba(0, 0, 0, 0.2) inset, 0.05em 0 0.07em rgba(0, 0, 0, 0.2) inset, -0.05em 0 0.07em rgba(0, 0, 0, 0.2) inset;
-  box-shadow: 0 0.1em 0.2em rgba(0, 0, 0, 0.1) inset, 0 0.1em 0.1em rgba(0, 0, 0, 0.2) inset, 0.05em 0 0.07em rgba(0, 0, 0, 0.2) inset, -0.05em 0 0.07em rgba(0, 0, 0, 0.2) inset;
-  -webkit-transition: all 10ms;
-  -moz-transition: all 10ms;
-  -o-transition: all 10ms;
-  transition: all 10ms;
 }
