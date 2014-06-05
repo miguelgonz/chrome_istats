@@ -12,6 +12,7 @@ function init() {
 function clear () {
     data = [];
     _updateBadge();
+    dataListener();
 }
 
 function enable() {
@@ -44,13 +45,8 @@ function _updateConfig() {
 
 
 function _updateBadge() {
-    var numberRequests = 0;
-    for (var i=0; i < data.length ; i++) {
-        if (data[i].separator) {
-            numberRequests ++;
-        }
-    }
-    chrome.browserAction.setBadgeText ( { text: numberRequests.toString() } );
+    var numRequests = data.length;
+    chrome.browserAction.setBadgeText ( { text: numRequests.toString() } );
 }
 
 function _parseQueryString( queryString ) {
@@ -96,7 +92,12 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
         var whitelist = false,
             count = 0,
             urlParts = info.url.split("?"),
-            params = false;
+            params = false,
+            requestData = {
+                labels: {},
+                timestamp: new Date().getTime()
+            };
+
         if (!config.enabled) return;
 
         if (urlParts.length > 1) {
@@ -107,13 +108,13 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
 
             if (_filterRequest(params)) {
                 for (var key in params) {
-                    if (!whitelist || whitelist.indexOf(key) !== -1) {
-                        data.unshift({'separator': false, 'key':key, 'value':params[key]});
+                    if (!whitelist || whitelist.indexOf(key) === -1) {
+                        requestData.labels[key] = params[key];
                         count ++;
                     }
                 }
                 if (count > 0) {
-                    data.unshift({'separator':true, 'timestamp': new Date().getTime()});
+                    data.unshift(requestData);
                 }
                 try{
                     dataListener();

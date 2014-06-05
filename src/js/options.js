@@ -5,7 +5,8 @@ var optionMapping = {
     'blacklist_value': 'blacklist_value',
     'whitelist_label': 'whitelist_label',
     'whitelist_value': 'whitelist_value',
-    'alphabetically_checkbox': 'alphabetically_checkbox'
+    'alphabetically_checkbox': 'alphabetically_checkbox',
+    'highlightpageviews_checkbox': 'highlightpageviews_checkbox'
 };
 
 var cache = {

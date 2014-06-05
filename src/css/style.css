@@ -33,30 +33,45 @@ fieldset {
 }
 
 /* line 35, ../scss/style.scss */
+table.request {
+  margin: 1em 0;
+}
+
+/* line 39, ../scss/style.scss */
 #popup {
   min-width: 320px;
 }
-/* line 38, ../scss/style.scss */
+/* line 41, ../scss/style.scss */
+#popup .message {
+  margin-top: 3em;
+}
+/* line 45, ../scss/style.scss */
+#popup header {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+}
+/* line 53, ../scss/style.scss */
 #popup table th {
   background: #444;
   color: #ccc;
 }
-/* line 42, ../scss/style.scss */
+/* line 57, ../scss/style.scss */
 #popup table td, #popup table th {
   border: 1px solid #999;
   padding: 4px;
 }
-/* line 46, ../scss/style.scss */
+/* line 61, ../scss/style.scss */
 #popup table tr.request-header td {
   background: #444;
   color: #ccc;
 }
 
-/* line 55, ../scss/style.scss */
+/* line 70, ../scss/style.scss */
 #tips ul {
   list-style: none;
 }
-/* line 58, ../scss/style.scss */
+/* line 73, ../scss/style.scss */
 #tips li {
   display: inline-table;
   border-right: 1px solid;

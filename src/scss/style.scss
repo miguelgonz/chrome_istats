@@ -32,7 +32,22 @@ fieldset {
     }
 }
 
+table.request {
+    margin: 1em 0;
+}
+
 #popup {
+
+    .message {
+        margin-top: 3em;
+    }
+
+    header {
+        position: fixed;
+        top: 0px;
+        right: 0px;
+    }
+
     min-width: 320px;
     table {
         th {
