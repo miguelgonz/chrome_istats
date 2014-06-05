@@ -7,6 +7,7 @@
     </head>
     <body>
         <div id="content" class="container">
+            <h2>Options for iStats tracker</h2>
             <div id="fields" class="row">
                 <fieldset>
                     <legend>Whitelist labels</legend>
@@ -16,13 +17,12 @@
                 </fieldset>
                 <fieldset>
                     <legend>Filter requests</legend>
-
-                    <h3>Whitelist</h3>
+                    <h4>Whitelist</h4>
                     <p>Don't show requests that <strong>don't have</strong> the following label with a value. Leave empty to process all requests.</p>
                     <input type="text" size="40" id="whitelist_label" placeholder="action_name"/>
                     <input type="text" size="40" id="whitelist_value" placeholder="page-load"/>
 
-                    <h3>Blacklist</h3>
+                    <h4>Blacklist</h4>
                     <p>Don't show requests that <strong>have</strong> the following label with the following value.</p>
                     <input type="text" size="40" id="blacklist_label" placeholder="ns_type"/>
                     <input type="text" size="40" id="blacklist_value" placeholder="hidden"/>
@@ -73,7 +73,7 @@
             <div id="styling" class="row">
                 <fieldset>
                     <legend>How to display labels</legend>
-                    <p><input type="checkbox"/> Order labels alphabetically</p> 
+                    <p><input id="alphabetically_checkbox" type="checkbox"/> Order labels alphabetically</p> 
                 </fieldset>
             </div>
 

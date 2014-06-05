@@ -1,6 +1,6 @@
 var dataListener = function () {},
     data = [],
-    defaultConfig = { whitelist: '', whitelist_label: '', whitelist_value: '', blacklist_label: '', blacklist_value: '', enabled: 1},
+    defaultConfig = { whitelist: '', whitelist_label: '', whitelist_value: '', blacklist_label: '', blacklist_value: '', enabled: 1, alphabetically_checkbox: ''},
     config = defaultConfig;
 
 function init() {

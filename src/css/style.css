@@ -12,27 +12,51 @@
   border: 1px solid #999;
 }
 
-/* line 18, ../scss/style.scss */
+/* line 17, ../scss/style.scss */
+fieldset {
+  margin: 2em 0;
+}
+
+/* line 21, ../scss/style.scss */
+#status {
+  position: fixed;
+  top: -4px;
+  left: 50%;
+  opacity: 1;
+  -webkit-transition: 0.5s top, 1s opacity;
+}
+/* line 28, ../scss/style.scss */
+#status.upwards {
+  display: block;
+  top: -70px;
+  opacity: 0;
+}
+
+/* line 35, ../scss/style.scss */
+#popup {
+  min-width: 320px;
+}
+/* line 38, ../scss/style.scss */
 #popup table th {
   background: #444;
   color: #ccc;
 }
-/* line 22, ../scss/style.scss */
+/* line 42, ../scss/style.scss */
 #popup table td, #popup table th {
   border: 1px solid #999;
   padding: 4px;
 }
-/* line 26, ../scss/style.scss */
+/* line 46, ../scss/style.scss */
 #popup table tr.request-header td {
   background: #444;
   color: #ccc;
 }
 
-/* line 34, ../scss/style.scss */
+/* line 55, ../scss/style.scss */
 #tips ul {
   list-style: none;
 }
-/* line 37, ../scss/style.scss */
+/* line 58, ../scss/style.scss */
 #tips li {
   display: inline-table;
   border-right: 1px solid;

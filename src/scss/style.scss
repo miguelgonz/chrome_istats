@@ -14,18 +14,39 @@
     border: 1px solid #999;
 }
 
-#popup table {
-    th {
-        background: #444;
-        color: #ccc;
+fieldset {
+    margin: 2em 0;
+}
+
+#status {
+    position: fixed;
+    top: -4px;
+    left: 50%;
+    opacity: 1;
+    -webkit-transition: 0.5s top, 1s opacity;
+
+    &.upwards {
+        display: block;
+        top: -70px;
+        opacity: 0;
     }
-    td, th {
-        border: 1px solid #999;
-        padding: 4px;
-    }
-    tr.request-header td {
-        background: #444;
-        color: #ccc;
+}
+
+#popup {
+    min-width: 320px;
+    table {
+        th {
+            background: #444;
+            color: #ccc;
+        }
+        td, th {
+            border: 1px solid #999;
+            padding: 4px;
+        }
+        tr.request-header td {
+            background: #444;
+            color: #ccc;
+        }
     }
 }
 
