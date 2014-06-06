@@ -1,11 +1,6 @@
 (function () {
 
-    var cache = {
-        message: $('.message').hide(),
-        clear: $('#clear'),
-        content: $('#content')
-    },
-    options, bg,
+    var cache, options, bg,
     defaultConfig = { whitelist: '', whitelist_label: '', whitelist_value: '', blacklist_label: '', blacklist_value: '', enabled: 1, alphabetically_checkbox: '', highlightpageviews_checkbox: '' };
 
     function formatHour(date) {
@@ -39,8 +34,7 @@
         return data;
     }
 
-    var refreshRequests = function () {
-        console.log('DATA: ', bg.data);
+    function refreshRequests() {
         $('#content tbody').html('');
 
         var sortByKey = function (a, b) {
@@ -49,6 +43,7 @@
 
         try {
             if (bg.data.length === 0) {
+                console.log(cache);
                 cache.content.hide();
                 cache.clear.hide();
                 cache.message.show().html('No recorded requests to iStats');
@@ -91,10 +86,31 @@
 
             $('#content').append(html);
         }
+    }
 
-    };
+    function styleOnOff() {
+        $this = $('#onoff');
+        var $text = $this.find('.text');
+        if ($text.text() === 'Enabled') {
+            $this.find('.glyphicon-eye-close').hide();
+            $this.find('.glyphicon-eye-open').show();
+            $this.removeClass('btn-warning');
+            $this.addClass('btn-primary');
+        } else {
+            $this.find('.glyphicon-eye-close').show();
+            $this.find('.glyphicon-eye-open').hide();
+            $this.addClass('btn-warning');
+            $this.removeClass('btn-primary');
+        }
+    }
 
     function init() {
+        cache = {
+            message: $('.message').hide(),
+            clear: $('#clear'),
+            content: $('#content')
+        };
+
         bg = chrome.extension.getBackgroundPage();
         bg.addDataListener(refreshRequests);
 
@@ -102,15 +118,21 @@
         $('#clear').click(function () {
             bg.clear();
         });
+        $('#options').click(function () {
+            chrome.tabs.create({'url': chrome.extension.getURL("options.html") });
+        });
         $('#onoff').click(function () {
-            if ($(this).text() === 'Enabled') {
-                $(this).text('Disabled');
+            var $text = $(this).find('.text');
+            if ($text.text() === 'Enabled') {
+                $text.text('Disabled');
                 bg.disable();
             } else {
-                $(this).text('Enabled');
+                $text.text('Enabled');
                 bg.enable();
             }
-        }).text(bg.config.enabled ? 'Enabled':'Disabled');
+            styleOnOff();
+        });
+        styleOnOff();
     }
 
     chrome.storage.local.get(defaultConfig, function(items) {
