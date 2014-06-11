@@ -62,13 +62,17 @@
                 continue;
             }
 
-            html = '<h4>' + formatHour(new Date(request.timestamp)) + '</h4>' +
-                '<table class="request table table-striped"><thead> <tr><th>Key</th><th>Value</th></tr> </thead>';
-
-
+            var tableClass = "";
             if (options.highlightpageviews_checkbox === 'on') {
-               //data = highlightpageviews(data); 
+                if (request.labels.ns_type === 'hidden') {
+                    tableClass = " downlighted";
+                } else {
+                    tableClass = " highlighted";
+                }
             }
+
+            html = '<h4><span class="glyphicon glyphicon-time glyphicon"></span> ' + formatHour(new Date(request.timestamp)) + '</h4>' +
+                '<table class="request table table-striped' + tableClass + '"><thead> <tr><th>Key</th><th>Value</th></tr> </thead>';
 
             var labels = [];
             for (var key in request.labels) {
@@ -79,7 +83,13 @@
                labels = labels.sort(sortByKey); 
             }
             for (var i in labels) {
-                html += '<tr><td>'+labels[i].key+'</td><td>'+labels[i].key+'</td></tr>';
+                html += '<tr><td>'+labels[i].key+'</td><td>';
+                if (labels[i].label.length > 30) {
+                    html += "<span title='"+labels[i].label +"'>"+labels[i].label.substring(0,30)+"&hellip;</span>";
+                } else {
+                    html += labels[i].label;
+                }
+                html += '</td></tr>';
             }
 
             html += "</table>";
@@ -131,7 +141,7 @@
                 bg.enable();
             }
             styleOnOff();
-        });
+        }).find('.text').text(options.enabled ? 'Enabled' : 'Disabled');
         styleOnOff();
     }
 

@@ -34,9 +34,19 @@ fieldset {
 
 table.request {
     margin: 1em 0;
+
+    &.downlighted {
+        color: #555;
+        opacity: 0.6;
+    }
+
+    &.highlighted {
+        color: #600;
+    }
 }
 
 #popup {
+    margin-top: 0.5em;
 
     .message {
         margin-top: 3em;
@@ -46,6 +56,11 @@ table.request {
         position: fixed;
         top: 0px;
         right: 0px;
+        left: 0px;
+        z-index: 10;
+        background: rgba(255,255,255,0.5);
+        text-align: center;
+        padding: 4px 0 4px 0;
     }
 
     min-width: 320px;

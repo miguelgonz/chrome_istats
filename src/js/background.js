@@ -108,7 +108,7 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
 
             if (_filterRequest(params)) {
                 for (var key in params) {
-                    if (!whitelist || whitelist.indexOf(key) === -1) {
+                    if (!whitelist || whitelist.indexOf(key) !== -1) {
                         requestData.labels[key] = params[key];
                         count ++;
                     }
