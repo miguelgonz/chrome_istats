@@ -56,6 +56,10 @@ table.request.highlighted {
   margin-top: 3em;
 }
 /* line 55, ../scss/style.scss */
+#popup #content {
+  margin-top: 2.5em;
+}
+/* line 59, ../scss/style.scss */
 #popup header {
   position: fixed;
   top: 0px;
@@ -66,27 +70,27 @@ table.request.highlighted {
   text-align: center;
   padding: 4px 0 4px 0;
 }
-/* line 68, ../scss/style.scss */
+/* line 72, ../scss/style.scss */
 #popup table th {
   background: #444;
   color: #ccc;
 }
-/* line 72, ../scss/style.scss */
+/* line 76, ../scss/style.scss */
 #popup table td, #popup table th {
   border: 1px solid #999;
   padding: 4px;
 }
-/* line 76, ../scss/style.scss */
+/* line 80, ../scss/style.scss */
 #popup table tr.request-header td {
   background: #444;
   color: #ccc;
 }
 
-/* line 85, ../scss/style.scss */
+/* line 89, ../scss/style.scss */
 #tips ul {
   list-style: none;
 }
-/* line 88, ../scss/style.scss */
+/* line 92, ../scss/style.scss */
 #tips li {
   display: inline-table;
   border-right: 1px solid;
