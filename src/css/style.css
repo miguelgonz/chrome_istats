@@ -13,11 +13,16 @@
 }
 
 /* line 17, ../scss/style.scss */
+#menu button {
+  margin-top: 4px;
+}
+
+/* line 21, ../scss/style.scss */
 fieldset {
   margin: 2em 0;
 }
 
-/* line 21, ../scss/style.scss */
+/* line 25, ../scss/style.scss */
 #status {
   position: fixed;
   top: -4px;
@@ -25,41 +30,41 @@ fieldset {
   opacity: 1;
   -webkit-transition: 0.5s top, 1s opacity;
 }
-/* line 28, ../scss/style.scss */
+/* line 32, ../scss/style.scss */
 #status.upwards {
   display: block;
   top: -70px;
   opacity: 0;
 }
 
-/* line 35, ../scss/style.scss */
+/* line 39, ../scss/style.scss */
 table.request {
   margin: 1em 0;
 }
-/* line 38, ../scss/style.scss */
+/* line 42, ../scss/style.scss */
 table.request.downlighted {
   color: #555;
   opacity: 0.6;
 }
-/* line 43, ../scss/style.scss */
+/* line 47, ../scss/style.scss */
 table.request.highlighted {
   color: #600;
 }
 
-/* line 48, ../scss/style.scss */
+/* line 52, ../scss/style.scss */
 #popup {
   margin-top: 0.5em;
   min-width: 320px;
 }
-/* line 51, ../scss/style.scss */
+/* line 55, ../scss/style.scss */
 #popup .message {
   margin-top: 3em;
 }
-/* line 55, ../scss/style.scss */
+/* line 59, ../scss/style.scss */
 #popup #content {
   margin-top: 2.5em;
 }
-/* line 59, ../scss/style.scss */
+/* line 63, ../scss/style.scss */
 #popup header {
   position: fixed;
   top: 0px;
@@ -70,27 +75,27 @@ table.request.highlighted {
   text-align: center;
   padding: 4px 0 4px 0;
 }
-/* line 72, ../scss/style.scss */
+/* line 76, ../scss/style.scss */
 #popup table th {
   background: #444;
   color: #ccc;
 }
-/* line 76, ../scss/style.scss */
+/* line 80, ../scss/style.scss */
 #popup table td, #popup table th {
   border: 1px solid #999;
   padding: 4px;
 }
-/* line 80, ../scss/style.scss */
+/* line 84, ../scss/style.scss */
 #popup table tr.request-header td {
   background: #444;
   color: #ccc;
 }
 
-/* line 89, ../scss/style.scss */
+/* line 93, ../scss/style.scss */
 #tips ul {
   list-style: none;
 }
-/* line 92, ../scss/style.scss */
+/* line 96, ../scss/style.scss */
 #tips li {
   display: inline-table;
   border-right: 1px solid;

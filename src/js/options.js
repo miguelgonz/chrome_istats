@@ -6,7 +6,8 @@ var optionMapping = {
     'whitelist_label': 'whitelist_label',
     'whitelist_value': 'whitelist_value',
     'alphabetically_checkbox': 'alphabetically_checkbox',
-    'highlightpageviews_checkbox': 'highlightpageviews_checkbox'
+    'highlightpageviews_checkbox': 'highlightpageviews_checkbox',
+    'popup_type': 'popup_type'
 };
 
 var cache = {
@@ -31,7 +32,7 @@ function save_options() {
 
     chrome.storage.local.set(setOptions, function() {
         // Update status to let user know options were saved.
-        cache.status.text('Options saved.').removeClass('upwards');
+        cache.status.text('Options saved').removeClass('upwards');
         setTimeout(function() {
             cache.status.addClass('upwards');
         }, 2000);

@@ -1,9 +1,20 @@
 var dataListener = function () {},
     data = [],
-    defaultConfig = { whitelist: '', whitelist_label: '', whitelist_value: '', blacklist_label: '', blacklist_value: '', enabled: 1, alphabetically_checkbox: ''},
+    defaultConfig = {
+        whitelist: '',
+        whitelist_label: '',
+        whitelist_value: '',
+        blacklist_label: '',
+        blacklist_value: '',
+        enabled: 1,
+        alphabetically_checkbox: '',
+        popup_type: 'popup'
+    },
     config = defaultConfig;
 
+
 function init() {
+    setupPopupPanel();
     chrome.storage.onChanged.addListener(_loadSettings);
     _loadSettings();
     console.log('iStats logger loaded');
@@ -33,9 +44,12 @@ function addDataListener (callback) {
 
 /** Not public facing functions */
 
-function _loadSettings() {
+function _loadSettings(cb) {
     chrome.storage.local.get(defaultConfig, function(storedConfig) {
         config = storedConfig;
+        if (typeof cb === 'function') {
+            cb();
+        }
     });
 }
 
@@ -43,6 +57,16 @@ function _updateConfig() {
     chrome.storage.local.set({'enabled': config.enabled});
 }
 
+var _updatePopup = function () {
+    var timer = null;
+    return function () {
+        var context = this, args = arguments;
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+            dataListener();
+        }, 100);
+    };
+}();
 
 function _updateBadge() {
     var numRequests = data.length;
@@ -87,6 +111,44 @@ function _filterRequest(params) {
     return true;
 }
 
+function setupPopupPanel() {
+    var popupId = false;
+    function openPopup() {
+        _loadSettings(function () {
+            chrome.windows.create({
+                'url': chrome.extension.getURL('popup.html'),
+                'top': 0,
+                'left': 0,
+                'width': 330,
+                'height': 580,
+                'type': config.popup_type
+                //'type': 'detached_panel'
+                //'type': 'panel'
+                //'type': 'popup'
+            }, function (popupWindow) {
+                popupId = popupWindow.id;
+            });
+        });
+    }
+    //Only have one window opened
+    chrome.browserAction.onClicked.addListener(function(tab) {
+        if (popupId) {
+            chrome.windows.get(popupId, {}, function (theWindow) {
+                if (!theWindow) {
+                    openPopup();
+                }else{
+                    //bring the window to the top
+                    chrome.windows.update(popupId, {
+                        focused: true
+                    });
+                }
+            });
+        }else{
+            openPopup();
+        }
+    });
+}
+
 chrome.webRequest.onBeforeSendHeaders.addListener(
     function(info) {
         var whitelist = false,
@@ -116,9 +178,7 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
                 if (count > 0) {
                     data.unshift(requestData);
                 }
-                try{
-                    dataListener();
-                } catch(e) {}
+                _updatePopup();
             }
             _updateBadge();
         }

@@ -35,7 +35,7 @@
     }
 
     function refreshRequests() {
-        $('#content tbody').html('');
+        $('#content').html('');
 
         var sortByKey = function (a, b) {
             return a.key > b.key ? '1':'-1';
@@ -71,13 +71,16 @@
                 }
             }
 
-            html = '<h4><span class="glyphicon glyphicon-time glyphicon"></span> ' + formatHour(new Date(request.timestamp)) + '</h4>' +
-                '<table class="request table table-striped' + tableClass + '"><thead> <tr><th>Key</th><th>Value</th></tr> </thead>';
-
             var labels = [];
             for (var key in request.labels) {
                 labels.push({'key': key, 'label': request.labels[key]});
             }
+            if (labels.length === 0) {
+                return;
+            }
+
+            html = '<h4><span class="glyphicon glyphicon-time glyphicon"></span> ' + formatHour(new Date(request.timestamp)) + '</h4>' +
+                '<table class="request table table-striped' + tableClass + '"><thead> <tr><th>Key</th><th>Value</th></tr> </thead>';
 
             if (options.alphabetically_checkbox === 'on') {
                labels = labels.sort(sortByKey); 

@@ -6,88 +6,106 @@
         <script src="js/jquery.min.js"></script>
     </head>
     <body>
-        <div id="content" class="container">
-            <h2>Options for iStats tracker</h2>
-            <div id="fields" class="row">
-                <fieldset>
-                    <legend>Whitelist labels</legend>
-                    <p>Keep empty to allow all</p>
-                    <label>Labels:</label> (Comma separated)<br/>
-                    <input type="text" size="80" id="whitelist" placeholder="prev_page_type,page_type"/>
-                </fieldset>
-                <fieldset>
-                    <legend>Filter requests</legend>
-                    <h4>Whitelist</h4>
-                    <p>Don't show requests that <strong>don't have</strong> the following label with a value. Leave empty to process all requests.</p>
-                    <input type="text" size="40" id="whitelist_label" placeholder="action_name"/>
-                    <input type="text" size="40" id="whitelist_value" placeholder="page-load"/>
-
-                    <h4>Blacklist</h4>
-                    <p>Don't show requests that <strong>have</strong> the following label with the following value.</p>
-                    <input type="text" size="40" id="blacklist_label" placeholder="ns_type"/>
-                    <input type="text" size="40" id="blacklist_value" placeholder="hidden"/>
-                </fieldset>
-            </div>
-
-            <div id="tips" class="row">
-                <p>The following is a (not complete) list of labels you might find useful</p>
-                <ul>
-                    <li>action_name</li>
-                    <li>action_type</li>
-                    <li>app_name</li>
-                    <li>app_type</li>
-                    <li>app_version</li>
-                    <li>bbc_mc</li>
-                    <li>blq_r</li>
-                    <li>blq_s</li>
-                    <li>blq_v</li>
-                    <li>breakpoint_type</li>
-                    <li>campaignID</li>
-                    <li>channel_tx_state</li>
-                    <li>event_master_brand</li>
-                    <li>iplayer_version</li>
-                    <li>language</li>
-                    <li>location_nation</li>
-                    <li>location_region</li>
-                    <li>ml_name</li>
-                    <li>ml_version</li>
-                    <li>name</li>
-                    <li>ns__t</li>
-                    <li>ns_c</li>
-                    <li>ns_jspageurl</li>
-                    <li>ns_referrer</li>
-                    <li>ns_ti</li>
-                    <li>ns_type</li>
-                    <li>object_count_stream</li>
-                    <li>page_layout</li>
-                    <li>page_type</li>
-                    <li>pal_route</li>
-                    <li>pal_webapp</li>
-                    <li>prod_name</li>
-                    <li>screen_resolution</li>
-                    <li>service_type</li>
-                    <li>testVariant</li>
-                </ul>
-            </div>
-
-            <div id="styling" class="row">
-                <fieldset>
-                    <legend>How to display labels</legend>
-                    <p><input id="alphabetically_checkbox" type="checkbox"/> Order labels alphabetically</p> 
-                    <br/>
-                    <p><input id="highlightpageviews_checkbox" type="checkbox"/> Highlight requests without ns_type = hidden</p> 
-                </fieldset>
-            </div>
-
-            <div id="options" class="row">
-
-                <br style="clear: both"/>
-                <br style="clear: both"/>
+        <div id="menu" class="navbar navbar-default navbar-fixed-top">
+            <div class="navbar-header"><span class="navbar-brand">Options for iStats tracker</span></div>
+            <ul class="navbar-right">
                 <button class="btn btn-default" id="save">Save</button>
-                <div id="status" class="alert alert-success"></div>
-            </div>
-
+              </ul>
+            <div id="status" class="alert alert-success"></div>
+            <br/>
         </div>
-        <script src="js/options.js"></script>
-    </body>
-</html>
+        <div id="content" class="container">
+            <br/>
+            <br/>
+            <br/>
+            <div class="row">
+                <div class="col-md-6">
+                    <div id="fields">
+                        <fieldset>
+                            <legend>Whitelist labels</legend>
+                            <p>Keep empty to allow all</p>
+                            <label>Labels:</label> (Comma separated)<br/>
+                            <input type="text" size="60" id="whitelist" placeholder="prev_page_type,page_type"/>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Filter requests</legend>
+                            <h4>Whitelist</h4>
+                            <p>Don't show requests that <strong>don't have</strong> the following label with a value. Leave empty to process all requests.</p>
+                            <input type="text" size="40" id="whitelist_label" placeholder="action_name"/>
+                            <input type="text" size="40" id="whitelist_value" placeholder="page-load"/>
+
+                            <h4>Blacklist</h4>
+                            <p>Don't show requests that <strong>have</strong> the following label with the following value.</p>
+                            <input type="text" size="40" id="blacklist_label" placeholder="ns_type"/>
+                            <input type="text" size="40" id="blacklist_value" placeholder="hidden"/>
+                        </fieldset>
+                    </div>
+
+                    <div id="tips">
+                        <p>The following is a (not complete) list of labels you might find useful</p>
+                        <ul>
+                            <li>action_name</li>
+                            <li>action_type</li>
+                            <li>app_name</li>
+                            <li>app_type</li>
+                            <li>app_version</li>
+                            <li>bbc_mc</li>
+                            <li>blq_r</li>
+                            <li>blq_s</li>
+                            <li>blq_v</li>
+                            <li>breakpoint_type</li>
+                            <li>campaignID</li>
+                            <li>channel_tx_state</li>
+                            <li>event_master_brand</li>
+                            <li>iplayer_version</li>
+                            <li>language</li>
+                            <li>location_nation</li>
+                            <li>location_region</li>
+                            <li>ml_name</li>
+                            <li>ml_version</li>
+                            <li>name</li>
+                            <li>ns__t</li>
+                            <li>ns_c</li>
+                            <li>ns_jspageurl</li>
+                            <li>ns_referrer</li>
+                            <li>ns_ti</li>
+                            <li>ns_type</li>
+                            <li>object_count_stream</li>
+                            <li>page_layout</li>
+                            <li>page_type</li>
+                            <li>pal_route</li>
+                            <li>pal_webapp</li>
+                            <li>prod_name</li>
+                            <li>screen_resolution</li>
+                            <li>service_type</li>
+                            <li>testVariant</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div id="styling">
+                        <fieldset>
+                            <legend>How to show the popup</legend>
+                            <p>
+                            <select id="popup_type">
+                                <option value="popup">Popup</option>
+                                <option value="panel">Panel</option>
+                                <option value="detached_panel">Detached panel</option>
+                            </select>
+                            </p>
+                        </fieldset>
+                        <fieldset>
+                            <legend>How to display labels</legend>
+                            <p><input id="alphabetically_checkbox" type="checkbox"/> Order labels alphabetically</p> 
+                            <br/>
+                            <p><input id="highlightpageviews_checkbox" type="checkbox"/> Highlight requests without ns_type = hidden</p> 
+                        </fieldset>
+                    </div>
+                </div>
+
+
+            </div>
+            <script src="js/options.js"></script>
+        </body>
+    </html>
