@@ -7,8 +7,7 @@ var dataListener = function () {},
         blacklist_label: '',
         blacklist_value: '',
         enabled: 1,
-        alphabetically_checkbox: '',
-        popup_type: 'popup'
+        alphabetically_checkbox: ''
     },
     config = defaultConfig;
 
@@ -121,10 +120,7 @@ function setupPopupPanel() {
                 'left': 0,
                 'width': 330,
                 'height': 580,
-                'type': config.popup_type
-                //'type': 'detached_panel'
-                //'type': 'panel'
-                //'type': 'popup'
+                'type': 'popup'
             }, function (popupWindow) {
                 popupId = popupWindow.id;
             });
@@ -134,13 +130,11 @@ function setupPopupPanel() {
     chrome.browserAction.onClicked.addListener(function(tab) {
         if (popupId) {
             chrome.windows.get(popupId, {}, function (theWindow) {
-                if (!theWindow) {
-                    openPopup();
-                }else{
+                if (theWindow) {
                     //bring the window to the top
-                    chrome.windows.update(popupId, {
-                        focused: true
-                    });
+                    chrome.windows.update(popupId, {focused: true});
+                }else{
+                    openPopup();
                 }
             });
         }else{
