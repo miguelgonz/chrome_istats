@@ -95,22 +95,6 @@
         }
     }
 
-    function styleOnOff() {
-        $this = $('#onoff');
-        var $text = $this.find('.text');
-        if ($text.text() === 'Enabled') {
-            $this.find('.glyphicon-eye-close').hide();
-            $this.find('.glyphicon-eye-open').show();
-            $this.removeClass('btn-warning');
-            $this.addClass('btn-primary');
-        } else {
-            $this.find('.glyphicon-eye-close').show();
-            $this.find('.glyphicon-eye-open').hide();
-            $this.addClass('btn-warning');
-            $this.removeClass('btn-primary');
-        }
-    }
-
     function init() {
         cache = {
             message: $('.message').hide(),
@@ -128,18 +112,16 @@
         $('#options').click(function () {
             chrome.tabs.create({'url': chrome.extension.getURL("options.html") });
         });
-        $('#onoff').click(function () {
-            var $text = $(this).find('.text');
-            if ($text.text() === 'Enabled') {
-                $text.text('Disabled');
-                bg.disable();
-            } else {
-                $text.text('Enabled');
-                bg.enable();
-            }
-            styleOnOff();
-        }).find('.text').text(options.enabled ? 'Enabled' : 'Disabled');
-        styleOnOff();
+
+        $("[name='onoff']")
+            .bootstrapSwitch()
+            .on('switchChange.bootstrapSwitch', function(event, isEnabled) {
+                if (!!isEnabled) {
+                    bg.enable();
+                } else {
+                    bg.disable();
+                }
+            });
     }
 
     chrome.storage.local.get(defaultConfig, function(items) {

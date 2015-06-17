@@ -4,18 +4,18 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <title>iStats log</title>
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootswatch/3.1.1/lumen/bootstrap.min.css" type="text/css" media="screen" charset="utf-8">
+        <link rel="stylesheet" href="css/bootstrap-switch.min.css" type="text/css" media="screen" charset="utf-8">
         <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/bootstrap-switch.min.js"></script>
         <script src="js/popup.js"> </script>
         <link rel="stylesheet" href="/css/style.css" type="text/css" media="screen" charset="utf-8">
     </head>
     <body>
         <div id="popup" class="container">
             <header>
-                <button id="onoff" class="btn btn-warning">
-                    <span class="glyphicon glyphicon-eye-open">&nbsp;</span>
-                    <span class="glyphicon glyphicon-eye-close">&nbsp;</span>
-                    <span class="text">Enabled</span>
-                </button>
+                <input type="checkbox" id="onoff" name="onoff"  data-label-width="0" checked>
+
                 <button id="clear" class="btn btn-danger">
                     <span class="glyphicon glyphicon-remove">&nbsp;</span>
                     Clear
