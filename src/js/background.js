@@ -1,6 +1,6 @@
 var dataListener = function () {},
     data = [],
-    listenUrl = "http://sa.bbc.co.uk/",
+    listenUrl = "*://sa.bbc.co.uk/",
     defaultConfig = {
         path: '*',
         whitelist: '',
