@@ -1,6 +1,8 @@
 var dataListener = function () {},
     data = [],
+    listenUrl = "http://sa.bbc.co.uk/",
     defaultConfig = {
+        path: '*',
         whitelist: '',
         whitelist_label: '',
         whitelist_value: '',
@@ -16,7 +18,6 @@ function init() {
     setupPopupPanel();
     chrome.storage.onChanged.addListener(_loadSettings);
     _loadSettings();
-    console.log('iStats logger loaded');
 }
 
 function clear () {
@@ -100,7 +101,6 @@ function _filterRequest(params) {
     }
     if (config.blacklist_label !== '') {
         for (key in params) {
-            console.log(key, params[key]);
             if (key === config.blacklist_label && params[key] === config.blacklist_value) {
                 return false;
             }
@@ -143,6 +143,19 @@ function setupPopupPanel() {
     });
 }
 
+function isPathAllowed(url) {
+    var paths = config.path.split(",");
+    for (var i in paths) {
+        if (
+            paths[i] === '*' ||
+            url.indexOf(listenUrl + "bbc/" + paths[i].trim()) === 0
+        ) {
+            return true;
+        }
+    }
+    return false;
+}
+
 chrome.webRequest.onBeforeSendHeaders.addListener(
     function(info) {
         var whitelist = false,
@@ -155,6 +168,8 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
             };
 
         if (!config.enabled) return;
+        //Check that the path is allowed based on the conf
+        if (!isPathAllowed(urlParts[0])) return;
 
         if (urlParts.length > 1) {
             params = _parseQueryString(urlParts[1]);
@@ -178,11 +193,10 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
         }
     },
     { //filter
-        urls: [ "http://sa.bbc.co.uk/*" ]
+        urls: [ listenUrl + "*" ]
     },
     // extraInfoSpec
     ["blocking"]
 );
-
 
 init();

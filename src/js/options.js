@@ -1,5 +1,6 @@
 //option key, DOM VALUE
 var optionMapping = {
+    'path': 'path',
     'whitelist': 'whitelist',
     'blacklist_label': 'blacklist_label',
     'blacklist_value': 'blacklist_value',
@@ -63,5 +64,11 @@ function restore_options() {
 }
 $(function () {
     restore_options();
+    $('input').keydown(function (e) {
+        if (e.keyCode === 13 || e.keyCode === 32) {
+            save_options();
+        }
+    });
     $('#save').click(save_options);
+    $('input').blur(save_options);
 });

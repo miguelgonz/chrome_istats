@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html>
-    <head><title>iStats Extension Options</title>
+    <head><title>DAX Extension Options</title>
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootswatch/3.1.1/lumen/bootstrap.min.css" type="text/css" media="screen" charset="utf-8">
         <link rel="stylesheet" href="/css/style.css" type="text/css" media="screen" charset="utf-8">
         <script src="js/jquery.min.js"></script>
     </head>
     <body>
         <div id="menu" class="navbar navbar-default navbar-fixed-top">
-            <div class="navbar-header"><span class="navbar-brand">Options for iStats tracker</span></div>
-            <ul class="navbar-right">
-                <button class="btn btn-default" id="save">Save</button>
-              </ul>
+            <div class="navbar-header"><span class="navbar-brand">Options for DAX tracker</span></div>
+            <div class="navbar-right">
+            </div>
             <div id="status" class="alert alert-success"></div>
             <br/>
         </div>
@@ -40,47 +39,6 @@
                             <input type="text" size="40" id="blacklist_value" placeholder="hidden"/>
                         </fieldset>
                     </div>
-
-                    <div id="tips">
-                        <p>The following is a (not complete) list of labels you might find useful</p>
-                        <ul>
-                            <li>action_name</li>
-                            <li>action_type</li>
-                            <li>app_name</li>
-                            <li>app_type</li>
-                            <li>app_version</li>
-                            <li>bbc_mc</li>
-                            <li>blq_r</li>
-                            <li>blq_s</li>
-                            <li>blq_v</li>
-                            <li>breakpoint_type</li>
-                            <li>campaignID</li>
-                            <li>channel_tx_state</li>
-                            <li>event_master_brand</li>
-                            <li>iplayer_version</li>
-                            <li>language</li>
-                            <li>location_nation</li>
-                            <li>location_region</li>
-                            <li>ml_name</li>
-                            <li>ml_version</li>
-                            <li>name</li>
-                            <li>ns__t</li>
-                            <li>ns_c</li>
-                            <li>ns_jspageurl</li>
-                            <li>ns_referrer</li>
-                            <li>ns_ti</li>
-                            <li>ns_type</li>
-                            <li>object_count_stream</li>
-                            <li>page_layout</li>
-                            <li>page_type</li>
-                            <li>pal_route</li>
-                            <li>pal_webapp</li>
-                            <li>prod_name</li>
-                            <li>screen_resolution</li>
-                            <li>service_type</li>
-                            <li>testVariant</li>
-                        </ul>
-                    </div>
                 </div>
 
                 <div class="col-md-6">
@@ -99,16 +57,22 @@
                         </fieldset>
                         -->
                         <fieldset>
+                            <legend>Path filtering</legend>
+                            <p>Paths to listen to in the requests, if empty all requests will be picked-up. Valid values are: bbc, test, int, nkdata, and stage.</p><p>To have multiple values please comma-separate them. <br/>To show all the requests use *.</p> 
+                            <br/>
+                            http://sa.bbc.co.uk/bbc/<input id="path" type="text" name="path" size="12" value="bbc"/>/*
+                        </fieldset>
+                        <fieldset>
                             <legend>How to display labels</legend>
                             <p><input id="alphabetically_checkbox" type="checkbox"/> Order labels alphabetically</p> 
                             <br/>
-                            <p><input id="highlightpageviews_checkbox" type="checkbox"/> Highlight requests without ns_type = hidden</p> 
+                            <p><input id="highlightpageviews_checkbox" type="checkbox"/> Highlight page views - highlights requests without ns_type = hidden</p> 
                         </fieldset>
+                        <button class="btn btn-default" id="save">Save</button>
                     </div>
                 </div>
-
-
             </div>
-            <script src="js/options.js"></script>
-        </body>
-    </html>
+        </div>
+        <script src="js/options.js"></script>
+    </body>
+</html>

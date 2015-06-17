@@ -38,6 +38,11 @@ fieldset {
 
 table.request {
     margin: 1em 0;
+    width: 100%;
+
+    thead, tbody, tr {
+        width: 100%;
+    }
 
     &.downlighted {
         color: #555;
@@ -46,6 +51,16 @@ table.request {
 
     &.highlighted {
         color: #600;
+    }
+
+    td {
+        div {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: block;
+            width: 100%;
+        }
     }
 }
 
@@ -99,5 +114,10 @@ table.request {
         margin-right: 8px;
         padding-right: 8px;
     }
+}
+
+#path {
+    border: 1px solid #eee;
+    box-shadow: inset 0 1px 5px rgba(0,0,0,0.2);
 }
 

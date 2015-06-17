@@ -86,13 +86,7 @@
                labels = labels.sort(sortByKey); 
             }
             for (var i in labels) {
-                html += '<tr><td>'+labels[i].key+'</td><td>';
-                if (labels[i].label.length > 30) {
-                    html += "<span title='"+labels[i].label +"'>"+labels[i].label.substring(0,30)+"&hellip;</span>";
-                } else {
-                    html += labels[i].label;
-                }
-                html += '</td></tr>';
+                html += '<tr><td title="'+labels[i].label +'"><div>'+labels[i].key+'</div></td><td><div>' + labels[i].label + '</div></td></tr>';
             }
 
             html += "</table>";
