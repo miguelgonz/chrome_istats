@@ -43,10 +43,9 @@
 
         try {
             if (bg.data.length === 0) {
-                console.log(cache);
                 cache.content.hide();
                 cache.clear.hide();
-                cache.message.show().html('No recorded requests to iStats');
+                cache.message.show().html('No requests recorded yet');
             } else {
                 cache.content.show();
                 cache.clear.show();
@@ -86,7 +85,7 @@
                labels = labels.sort(sortByKey); 
             }
             for (var i in labels) {
-                html += '<tr><td title="'+labels[i].label +'"><div>'+labels[i].key+'</div></td><td><div>' + labels[i].label + '</div></td></tr>';
+                html += '<tr><td class="key" title="'+labels[i].label +'"><div>'+labels[i].key+'</div></td><td class="value"><div>' + labels[i].label + '</div></td></tr>';
             }
 
             html += "</table>";
