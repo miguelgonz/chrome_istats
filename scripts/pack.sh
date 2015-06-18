@@ -14,5 +14,5 @@ if [ ! -d $BUILD_DIR ]; then
     mkdir $BUILD_DIR
 fi
 
-mv src.crx build/${APPNAME}.crx > /dev/null
+mv src.crx ${BUILD_DIR}/${APPNAME}.crx > /dev/null
 echo "Extension file has been created in ${BUILD_DIR}/${APPNAME}.crx "
