@@ -148,7 +148,7 @@ function isPathAllowed(url) {
     for (var i in paths) {
         if (
             paths[i] === '*' ||
-            url.indexOf(listenUrl.substring(1) + "bbc/" + paths[i].trim()) !== 0
+            url.indexOf(listenUrl.substring(1) + "bbc/" + paths[i].trim()) !== -1
         ) {
             return true;
         }
